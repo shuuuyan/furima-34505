@@ -18,6 +18,7 @@
 ### Association
 - has_many : items
 - belongs_to : buyers
+- has_one : buyers
 
 ## items テーブル
 
@@ -49,6 +50,7 @@
 - has_many : items
 - belongs_to : users
 - belongs_to : shipping
+- has_one : shopping
 
 ##  shippingテーブル
 
