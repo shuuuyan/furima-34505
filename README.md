@@ -15,8 +15,8 @@
 
 
 ### Association
-- has_one : items
-- has_one : buyer
+- has_many : items
+- has_one  : buyer
 
 ## items テーブル
 
@@ -29,7 +29,7 @@
 | condition_id    | integer    | null: false, active_hashで実装 |
 | shoppingday_id  | integer    | null: false, active_hashで実装 |
 | price           | integer    | null: false                    |
-| delivery_fee    | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
 
@@ -46,7 +46,7 @@
 
 
 ### Association
-- has_many   : items
+- belongs_to : items
 - belongs_to : user
 - has_one    : shopping
 
@@ -58,7 +58,7 @@
 | prefecture_id| integer     | null: false, active_hashで実装 |
 | city         | string      | null: false                    |
 | address      | string      | null: false                    |
-| building     | string      | null: false                    |
+| building     | string      |                                |
 | phone_number | string      | null: false                    |
 | buyer        | references  | null: false, foreign_key: true |
  
