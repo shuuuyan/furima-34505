@@ -6,13 +6,12 @@
 | --------                | ------  | ----------- |
 | nickname                | string  | null: false |
 | email                   | string  | null: false |
-| password                | string  | null: false |
-| password_confirmation   | string  | null: false |
+| encrypted_password      | string  | null: false |
 | familyname              | text    | null: false |
 | firstname               | text    | null: false |
 | familyname_kana         | text    | null: false |
 | firstname_kana          | text    | null: false |
-| birthday                | integer | null: false |
+| birthday                | date    | null: false |
 
 
 ### Association
@@ -27,12 +26,11 @@
 | name          | text       | null: false                    |
 | description   | text       | null: false                    |
 | image         | ActiveStorageで実装                         |
-| category      | string     | null: false                    |
+| category_id   | integer    | active_hashで実装              |
 | shipping_area | string     | null: false                    |
 | condition     | string     | null: false                    |
 | shopping_day  | string     | null: false                    |
 | price         | integer    | null: false                    |
-| fee           | integer    | null: false                    |
 
 
 ### Association
@@ -44,7 +42,8 @@
 | Column | Type      | Options                        |
 | ------ | ----------| ------------------------------ |
 | user   | reference | null: false, foreign_key: true |
-| name   | text      | null: false                    |
+| name   | reference | null: false, foreign_key: true |
+
 
 ### Association
 - has_many : items
@@ -60,7 +59,9 @@
 | prefectures  | string     | null: false                    |
 | city         | text       | null: false                    |
 | address      | text       | null: false                    |
+| building     | text       | null: false                    |
 | phone_number | integer    | null: false                    |
+
 
 ### Association
 - belongs_to : buyers
