@@ -39,10 +39,10 @@
 
 ## buyersテーブル
 
-| Column | Type      | Options                        |
-| ------ | ----------| ------------------------------ |
-| user   | reference | null: false, foreign_key: true |
-| name   | reference | null: false, foreign_key: true |
+| Column   | Type      | Options                        |
+| ------   | ----------| ------------------------------ |
+| user     | reference | null: false, foreign_key: true |
+| item     | reference | null: false, foreign_key: true |
 
 
 ### Association
@@ -56,12 +56,13 @@
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | postal_code  | integer    | null: false                    |
-| prefectures  | string     | null: false                    |
+| prefecture_id| integer    | active_hashで実装              |
 | city         | text       | null: false                    |
 | address      | text       | null: false                    |
 | building     | text       | null: false                    |
 | phone_number | integer    | null: false                    |
-
+| buyer        | reference  | null: false, foreign_key: true |
+ 
 
 ### Association
 - belongs_to : buyers
