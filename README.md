@@ -2,21 +2,21 @@
 
 ## users テーブル
 
-| Column                  | Type    | Options      |
-| --------                | ------  | -----------  |
-| nickname                | string  | null: false  |
-| email                   | string  | unique: true |
-| encrypted_password      | string  | null: false  |
-| familyname              | string  | null: false  |
-| firstname               | string  | null: false  |
-| familyname_kana         | string  | null: false  |
-| firstname_kana          | string  | null: false  |
-| birthday                | date    | null: false  |
+| Column                  | Type    | Options                   |
+| --------                | ------  | ------------------------- |
+| nickname                | string  | null: false               |
+| email                   | string  | null: false, unique: true |
+| encrypted_password      | string  | null: false               |
+| familyname              | string  | null: false               |
+| firstname               | string  | null: false               |
+| familyname_kana         | string  | null: false               |
+| firstname_kana          | string  | null: false               |
+| birthday                | date    | null: false               |
 
 
 ### Association
 - has_many : items
-- has_one  : buyer
+- has_many : buyer
 
 ## items テーブル
 
@@ -27,7 +27,7 @@
 | category_id     | integer    | null: false, active_hashで実装 |
 | shippingarea_id | integer    | null: false, active_hashで実装 |
 | condition_id    | integer    | null: false, active_hashで実装 |
-| shoppingday_id  | integer    | null: false, active_hashで実装 |
+| shippingday_id  | integer    | null: false, active_hashで実装 |
 | price           | integer    | null: false                    |
 | delivery_fee_id | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
@@ -46,21 +46,21 @@
 
 
 ### Association
-- belongs_to : items
+- belongs_to : item
 - belongs_to : user
-- has_one    : shopping
+- has_one    : shipping
 
 ##  shippingテーブル
 
-| Column       | Type        | Options                        |
-| ------------ | ----------- | ------------------------------ |
-| postal_code  | string      | null: false                    |
-| prefecture_id| integer     | null: false, active_hashで実装 |
-| city         | string      | null: false                    |
-| address      | string      | null: false                    |
-| building     | string      |                                |
-| phone_number | string      | null: false                    |
-| buyer        | references  | null: false, foreign_key: true |
+| Column          | Type        | Options                        |
+| --------------- | ----------- | ------------------------------ |
+| postal_code     | string      | null: false                    |
+| shippingarea_id | integer     | null: false, active_hashで実装 |
+| city            | string      | null: false                    |
+| address         | string      | null: false                    |
+| building        | string      |                                |
+| phone_number    | string      | null: false                    |
+| buyer           | references  | null: false, foreign_key: true |
  
 
 ### Association
