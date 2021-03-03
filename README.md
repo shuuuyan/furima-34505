@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column                  | Type    | Options     |
-| --------                | ------  | ----------- |
-| nickname                | string  | null: false |
-| email                   | string  | null: false |
-| encrypted_password      | string  | null: false |
-| familyname              | text    | null: false |
-| firstname               | text    | null: false |
-| familyname_kana         | text    | null: false |
-| firstname_kana          | text    | null: false |
-| birthday                | date    | null: false |
+| Column                  | Type    | Options      |
+| --------                | ------  | -----------  |
+| nickname                | string  | null: false  |
+| email                   | string  | unique: true |
+| encrypted_password      | string  | null: false  |
+| familyname              | string  | null: false  |
+| firstname               | string  | null: false  |
+| familyname_kana         | string  | null: false  |
+| firstname_kana          | string  | null: false  |
+| birthday                | date    | null: false  |
 
 
 ### Association
@@ -21,16 +21,16 @@
 
 ## items テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | -----------| ------------------------------ |
-| name          | text       | null: false                    |
-| description   | text       | null: false                    |
-| image         | ActiveStorageで実装                         |
-| category_id   | integer    | active_hashで実装              |
-| shipping_area | string     | null: false                    |
-| condition     | string     | null: false                    |
-| shopping_day  | string     | null: false                    |
-| price         | integer    | null: false                    |
+| Column          | Type       | Options                        |
+| --------------- | -----------| ------------------------------ |
+| name            | text       | null: false                    |
+| description     | text       | null: false                    |
+| image           |            | ActiveStorageで実装            |
+| category_id     | integer    | null: false, active_hashで実装 |
+| shippingarea_id | integer    | null: false, active_hashで実装 |
+| condition_id    | integer    | null: false, active_hashで実装 |
+| shoppingday_id  | integer    | null: false, active_hashで実装 |
+| price           | integer    | null: false                    |
 
 
 ### Association
@@ -39,10 +39,10 @@
 
 ## buyersテーブル
 
-| Column   | Type      | Options                        |
-| ------   | ----------| ------------------------------ |
-| user     | reference | null: false, foreign_key: true |
-| item     | reference | null: false, foreign_key: true |
+| Column   | Type         | Options                        |
+| ------   | ---------- | ------------------------------ |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -56,7 +56,7 @@
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | postal_code  | integer    | null: false                    |
-| prefecture_id| integer    | active_hashで実装              |
+| prefecture_id| integer    | null: false, active_hashで実装 |
 | city         | text       | null: false                    |
 | address      | text       | null: false                    |
 | building     | text       | null: false                    |
