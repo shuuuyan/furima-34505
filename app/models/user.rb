@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence: true do
-    validates :familyname, :firstname,           format: {with: /\A[ぁ-んァ-ヶ一-龥々]/, message: "is invalid" } #全角(ひら、カタ、漢字)の正規表現
-    validates :familyname_kana, :firstname_kana, format: {with: /\A[ァ-ヶー－]+\z/, message: "is invalid" } # ユーザー本名全角カナの正規表現
-    validates :password, :password_confirmation, format: {with: /\A[a-z0-9]+\z/i, message: "is invalid" } # passeordが半角英字数字のみ許可する
-    validates :nickname,
-    validates :birthdate,
+    validates :familyname, :firstname,           format: { with: /\A[ぁ-んァ-ヶ一-龥々]/, message: 'is invalid' } # 全角(ひら、カタ、漢字)の正規表現
+    validates :familyname_kana, :firstname_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid' } # ユーザー本名全角カナの正規表現
+    validates :password, :password_confirmation, format: { with: /\A[a-z0-9]+\z/i, message: 'is invalid' } # passwordが半角英字数字のみ許可する
+    validates :nickname
+    validates :birthdate
   end
 
   # 復習のため残しています↓(with_optionsでpresence: trueをまとめる前の記述)
@@ -23,4 +23,3 @@ class User < ApplicationRecord
   # validates :password,               presence: true, format: {with: /\A[a-z0-9]+\z/i }
   # validates :password_confirmation,  presence: true, format: {with: /\A[a-z0-9]+\z/i }
 end
-
