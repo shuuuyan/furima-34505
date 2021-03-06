@@ -7,7 +7,8 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :familyname, :firstname,           format: { with: /\A[ぁ-んァ-ヶ一-龥々]/, message: 'is invalid' } # 全角(ひら、カタ、漢字)の正規表現
     validates :familyname_kana, :firstname_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid' } # ユーザー本名全角カナの正規表現
-    validates :password, :password_confirmation, format: { with: /\A[a-z0-9]+\z/i, message: 'is invalid' } # passwordが半角英字数字のみ許可する
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+    validates_format_of :password, with: PASSWORD_REGEX, message: 'Please set including both letters and numbers'  # passwordが半角英字数字のみ許可する
     validates :nickname
     validates :birthdate
   end
