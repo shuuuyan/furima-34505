@@ -39,7 +39,12 @@ describe User do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
+      end
+      it 'emailに@が含まれていない場合登録できない' do
+        @user.email = 'abc.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
@@ -47,7 +52,7 @@ describe User do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it 'passwordが全角では登録できない' do
-        @user.password = '１１１１１１'
+        @user.password = '１１１ｑｑｑ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
