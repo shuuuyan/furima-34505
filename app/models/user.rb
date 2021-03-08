@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   with_options presence: true do
     validates :familyname, :firstname,           format: { with: /\A[ぁ-んァ-ヶ一-龥々]/, message: 'is invalid' } # 全角(ひら、カタ、漢字)の正規表現
     validates :familyname_kana, :firstname_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid' } # ユーザー本名全角カナの正規表現
