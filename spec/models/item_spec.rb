@@ -64,10 +64,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
-      it 'priceは¥300~¥9,999,999の間意外だと出品できない' do
+      it 'priceは¥300~¥9,999,999の間以外だと出品できない' do
         @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+      it 'priceは¥300~¥9,999,999の間以外だと出品できない' do
+        @item.price = 10_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
     end
   end
