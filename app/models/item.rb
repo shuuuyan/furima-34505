@@ -9,15 +9,9 @@ class Item < ApplicationRecord
   belongs_to :shippingday
   belongs_to :delivery_fee
 
-  validates :name, :description, :category_id, :shippingarea_id, :condition_id, :shippingday_id, :price, :delivery_fee_id,  presence: true
+  validates :image, :name, :description, :category_id, :shippingarea_id, :condition_id, :shippingday_id, :price, :delivery_fee_id,  presence: true
   validates :category_id, :shippingarea_id, :condition_id, :shippingday_id, :delivery_fee_id, numericality: { other_than: 0 } 
+  validates :price, numericality: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: 'is invalid' }
+  validates :price, presence: true, numericality:{only_integer:true,greater_than_or_equal_to:300,less_than_or_equal_to:9999999}
 
-  # validates :name,            presence: true
-  # validates :description,     presence: true
-  # validates :category_id,     presence: true
-  # validates :shippingarea_id, presence: true
-  # validates :condition_id,    presence: true
-  # validates :shippingday_id,  presence: true
-  # validates :price,           presence: true
-  # validates :delivery_fee_id, presence: true
 end
