@@ -13,5 +13,4 @@ class Item < ApplicationRecord
   validates :category_id, :shippingarea_id, :condition_id, :shippingday_id, :delivery_fee_id, numericality: { other_than: 0 } 
   validates :price, numericality: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: 'is invalid' }
   validates :price, presence: true, numericality:{only_integer:true,greater_than_or_equal_to:300,less_than_or_equal_to:9999999}
-
 end

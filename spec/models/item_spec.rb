@@ -59,8 +59,23 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shippingday must be other than 0")
       end
-      it 'priceは半角数字でなければ出品できない' do
+      it 'priceは全角数字では出品できない' do
         @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'priceは全角文字では出品できない' do
+        @item.price = 'ああああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'priceは半角英数混合では出品できない' do
+        @item.price = '1a1a'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'priceは半角英語だけでは出品できない' do
+        @item.price = 'aaaa'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end

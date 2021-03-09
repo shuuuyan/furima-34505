@@ -8,7 +8,7 @@ FactoryBot.define do
     shippingarea_id { 1 }
     shippingday_id  { 1 }
     price           { 1000 }
-    
+
     association :user
 
     after(:build) do |item|
@@ -16,10 +16,4 @@ FactoryBot.define do
     end
   end
 end
-
-
-# email { Faker::Internet.free_email }
-# content {Faker::Lorem.sentence}
-# association :user
-# association :room
 

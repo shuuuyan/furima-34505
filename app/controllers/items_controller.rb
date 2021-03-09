@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.order("created_at DESC")         #新規投稿順
+    # @items = Item.order("created_at DESC")         #新規投稿順
   end
 
   def new
