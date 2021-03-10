@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    # @items = Item.order("created_at DESC")         #新規投稿順
+    @items = Item.order("created_at DESC")         #新規投稿順
+    @items = Item.all
   end
 
   def new
