@@ -29,7 +29,7 @@
 | condition_id    | integer    | null: false, active_hashで実装 |
 | shippingday_id  | integer    | null: false, active_hashで実装 |
 | price           | integer    | null: false                    |
-| delivery_fee_id | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false  active_hashで実装 |
 | user            | references | null: false, foreign_key: true |
 
 
