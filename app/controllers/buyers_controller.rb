@@ -1,7 +1,7 @@
 class BuyersController < ApplicationController
 
   def index
-    @buyer_shipping = BuyerShipping.new(buyer_params)
+    @buyer_shipping = BuyerShipping.new
   end
 
   def create
@@ -17,7 +17,7 @@ class BuyersController < ApplicationController
   private
 
   def buyer_params
-    params.permit(:postal_code, :shippingarea_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id)
+    params.require(:buyer_shipping).permit(:postal_code, :shippingarea_id, :city, :address, :building, :phone_number, :buyer_shipping, :commit).merge(user_id: current_user.id, item_id: params[:item_id] )
   end
 
 end
