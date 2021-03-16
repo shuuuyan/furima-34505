@@ -5,7 +5,7 @@ RSpec.describe BuyerShipping, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @buyer_shipping = FactoryBot.build(:buyer_shipping, user_id: user.id, item_id: item.id)
-    sleep(1)
+    sleep(0.5)
   end
 
   describe '商品購入機能' do
@@ -54,12 +54,12 @@ RSpec.describe BuyerShipping, type: :model do
       it "電話番号が11桁以内でないと購入できないこと" do  
         @buyer_shipping.phone_number = '090123456789'
         @buyer_shipping.valid?
-        expect(@buyer_shipping.errors.full_messages).to include("Phone number can't be blank")
+        expect(@buyer_shipping.errors.full_messages).to include("Phone number is invalid")
       end
       it '電話番号は全角数字では購入できない' do
         @buyer_shipping.phone_number = '０９０１２３４５６７８'
         @buyer_shipping.valid?
-        expect(@buyer_shipping.errors.full_messages).to include("Price is invalid")
+        expect(@buyer_shipping.errors.full_messages).to include("Phone number is invalid")
       end
 
 
