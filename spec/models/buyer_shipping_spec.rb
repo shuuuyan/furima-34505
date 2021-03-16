@@ -10,7 +10,7 @@ RSpec.describe BuyerShipping, type: :model do
 
   describe '商品購入機能' do
     context '購入ができる時' do
-      it 'postal_code, shippingarea_id, city, address, phone_numberが存在すれば登録できる' do
+      it 'postal_code, shippingarea_id, city, address, phone_numbe,tokenが存在すれば登録できる' do
         expect(@buyer_shipping).to be_valid
       end
     end
@@ -40,6 +40,11 @@ RSpec.describe BuyerShipping, type: :model do
         @buyer_shipping.phone_number = ''
         @buyer_shipping.valid?
         expect(@buyer_shipping.errors.full_messages).to include("Phone number can't be blank")
+      end
+      it "tokenが空では登録できないこと" do
+        @buyer_shipping.token = nil
+        @buyer_shipping.valid?
+        expect(@buyer_shipping.errors.full_messages).to include("Token can't be blank")
       end
       it "郵便番号にハイフンがないと購入できないこと" do  
         @buyer_shipping.postal_code = '111.1111'
