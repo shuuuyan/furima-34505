@@ -14,7 +14,8 @@ RSpec.describe BuyerShipping, type: :model do
         expect(@buyer_shipping).to be_valid
       end
       it 'buildingは空でも登録できる' do
-      @buyer_shipping.postal_code = ''
+      @buyer_shipping.building = ''
+      @buyer_shipping.valid?
       end
     end
 

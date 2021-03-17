@@ -4,7 +4,6 @@ class BuyersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :contributor_confirmation
   before_action :item_buyer
-  before_action :buyer_rogin, except: [:index, :show]
 
   def index
     @buyer_shipping = BuyerShipping.new
@@ -24,7 +23,7 @@ class BuyersController < ApplicationController
   private
 
   def buyer_params
-    params.require(:buyer_shipping).permit(:postal_code, :shippingarea_id, :city, :address, :building, :phone_number,:number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:buyer_shipping).permit(:postal_code, :shippingarea_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
