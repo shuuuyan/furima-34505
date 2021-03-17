@@ -15,7 +15,7 @@ RSpec.describe BuyerShipping, type: :model do
       end
       it 'buildingは空でも登録できる' do
       @buyer_shipping.building = ''
-      @buyer_shipping.valid?
+      expect(@buyer_shipping).to be_valid
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe BuyerShipping, type: :model do
       end
       it "tokenが空では登録できないこと" do
         @buyer_shipping.token = nil
-        @buyer_shipping.valid?
+        @buyer_shipping.valid? 
         expect(@buyer_shipping.errors.full_messages).to include("Token can't be blank")
       end
       it "郵便番号にハイフンがないと購入できないこと" do  
