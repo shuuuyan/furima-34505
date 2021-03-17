@@ -10,8 +10,11 @@ RSpec.describe BuyerShipping, type: :model do
 
   describe '商品購入機能' do
     context '購入ができる時' do
-      it 'postal_code, shippingarea_id, city, address, phone_numbe,tokenが存在すれば登録できる' do
+      it '全てのデータが存在すれば登録できる' do
         expect(@buyer_shipping).to be_valid
+      end
+      it 'buildingは空でも登録できる' do
+      @buyer_shipping.postal_code = ''
       end
     end
 
@@ -66,10 +69,11 @@ RSpec.describe BuyerShipping, type: :model do
         @buyer_shipping.valid?
         expect(@buyer_shipping.errors.full_messages).to include("Phone number is invalid")
       end
-
-
-
-      
+      it '電話番号は英数字混合では購入できない' do
+        @buyer_shipping.phone_number = '0901a1a2b2b'
+        @buyer_shipping.valid?
+        expect(@buyer_shipping.errors.full_messages).to include("Phone number is invalid")
+      end     
     end
   end
 end

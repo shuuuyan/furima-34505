@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
-  # before_action :item_buyer, only: [:edit, :update, :destroy]
+  before_action :item_buyer, only: [:edit, :update, :destroy]
 
 
   def index
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
     redirect_to root_path unless current_user == @item.user
   end
 
-  # def item_buyer 
-  #   redirect_to root_path unless @item.buyer.nil?
-  # end
+  def item_buyer 
+    redirect_to root_path unless @item.buyer.nil?
+  end
 end

@@ -24,7 +24,7 @@ class BuyersController < ApplicationController
   private
 
   def buyer_params
-    params.require(:buyer_shipping).permit(:postal_code, :shippingarea_id, :city, :address, :building, :phone_number,:number, :cvc, :exp_month, :exp_year).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:buyer_shipping).permit(:postal_code, :shippingarea_id, :city, :address, :building, :phone_number,:number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
@@ -48,12 +48,6 @@ class BuyersController < ApplicationController
 
   def item_buyer 
     redirect_to root_path unless @item.buyer.nil?
-  end
-
-  def buyer_rogin
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
   end
 
 end
