@@ -1,6 +1,9 @@
 class BuyersController < ApplicationController
 
   before_action :set_item, only: [:index, :create]
+  before_action :contributor_confirmation
+  before_action :item_buyer
+  before_action :buyer_rogin, except: [:index, :show]
 
   def index
     @buyer_shipping = BuyerShipping.new
@@ -36,7 +39,20 @@ class BuyersController < ApplicationController
     )
   end
 
-end
+  def contributor_confirmation
+    if current_user == @item.user
+      redirect_to root_path
+    end
+  end
 
-# 復習用に残しています。
-#9行目でvalid?メソッドを使用しているのは、BuyershippingクラスがApplicationRecordを継承していないことにより、saveメソッドにはバリデーションを実行する機能がないため
+  def item_buyer 
+    redirect_to root_path unless @item.buyer.nil?
+  end
+
+  def buyer_rogin
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+
+end
