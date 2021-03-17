@@ -1,5 +1,6 @@
 class BuyersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
   before_action :contributor_confirmation
   before_action :item_buyer
@@ -51,7 +52,7 @@ class BuyersController < ApplicationController
 
   def buyer_rogin
     unless user_signed_in?
-      redirect_to action: :index
+      redirect_to new_user_session_path
     end
   end
 
